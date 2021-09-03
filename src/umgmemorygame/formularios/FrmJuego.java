@@ -8,6 +8,7 @@ package umgmemorygame.formularios;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import umgmemorygame.controladores.LogicaJuego;
 
 /**
  *
@@ -23,7 +24,7 @@ public class FrmJuego extends javax.swing.JFrame {
     
     public FrmJuego() {
         this.setTitle("Pantalla de juego");
-        this.setSize(1010, 720);
+        this.setSize(1250, 730);
         this.setLocationRelativeTo(null);
         pantallaJuego();
     }
@@ -94,9 +95,16 @@ public class FrmJuego extends javax.swing.JFrame {
         this.getContentPane().add(panel);
         
         JLabel saludo = new JLabel("UMG Memory Game 1.0");
-        saludo.setBounds(320, 30, 500, 40);
-        saludo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+        saludo.setBounds(500, 10, 300, 40);
+        saludo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panel.add(saludo);
+        
+        matriz = new LogicaJuego().cartas();
+        for(int i=0; i<8;i++){
+            for(int j=0;j<8;j++){
+                panel.add(matriz[i][j]);
+            }
+        }
     }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

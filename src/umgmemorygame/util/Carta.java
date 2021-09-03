@@ -19,7 +19,7 @@ public class Carta {
     public Carta(int name){
         vista = new JLabel();
         this.name = name;
-        vista.setIcon(RutaImg.resizable("src/umgmemorygame/imagenes/" + name + ".png", 70));
+        vista.setIcon(RutaImg.resizable("src/umgmemorygame/imagenes/" + name + ".png", 50));
     }
 
     public JLabel getVista() {

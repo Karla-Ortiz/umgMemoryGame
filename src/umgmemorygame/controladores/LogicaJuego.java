@@ -20,18 +20,17 @@ public class LogicaJuego {
 
     /**
      * Crea vista de las cartas con datos de la matriz base
-     * @param matriz de JLabel
      * @return matriz de JLabel con componentes
      */
-    public JLabel[][] cartas(JLabel[][] matriz) {
+    public JLabel[][] cartas() {
         insertarCartas();
-        matriz = new JLabel[8][8];
+        JLabel[][] matriz = new JLabel[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
                 matrizCartas[i][j] = new Carta(matriz1[i][j]);
                 matriz[i][j] = matrizCartas[i][j].getVista();
-                matriz[i][j].setSize(matriz[i][j].getWidth(), matriz[i][j].getHeight());
-                matriz[i][j].setBounds(350 + (j * 125), 30 + (i * 156), 125, 156);
+                matriz[i][j].setSize(150, 300);
+                matriz[i][j].setBounds(320 + (j * 110), 10 + (i * 80), 150, 156);
             }
         }
         return matriz;
@@ -50,22 +49,22 @@ public class LogicaJuego {
         for (int i = 1; i <= 32; i++) {
             x = generateIntRandom(8);
             y = generateIntRandom(8);
-            if (matriz1[x][y] == 0) {
+            if (matriz1[x][y] != 0) {
                 do {
                     x = generateIntRandom(8);
                     y = generateIntRandom(8);
-                } while (matriz1[x][y] == 0);
+                } while (matriz1[x][y] != 0);
             }
             matriz1[x][y] = i;
         }
         for (int i = 1; i <= 32; i++) {
             x = generateIntRandom(8);
             y = generateIntRandom(8);
-            if (matriz1[x][y] == 0) {
+            if (matriz1[x][y] != 0) {
                 do {
                     x = generateIntRandom(8);
                     y = generateIntRandom(8);
-                } while (matriz1[x][y] == 0);
+                } while (matriz1[x][y] != 0);
             }
             matriz1[x][y] = i;
         }
