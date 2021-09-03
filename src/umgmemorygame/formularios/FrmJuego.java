@@ -18,6 +18,9 @@ public class FrmJuego extends javax.swing.JFrame {
     /**
      * Creates new form FrmJuego
      */
+    JPanel panel;
+    JLabel matriz[][],fecha,cronometro,nombreJugador;
+    
     public FrmJuego() {
         this.setTitle("Pantalla de juego");
         this.setSize(1010, 720);
@@ -86,12 +89,12 @@ public class FrmJuego extends javax.swing.JFrame {
     }
     
     public void pantallaJuego(){
-        JPanel panel = new JPanel();
+        panel = new JPanel();
         panel.setLayout(null);
         this.getContentPane().add(panel);
         
-        JLabel saludo = new JLabel("Esto es una prueba");
-        saludo.setBounds(430, 100, 300, 40);
+        JLabel saludo = new JLabel("UMG Memory Game 1.0");
+        saludo.setBounds(320, 30, 500, 40);
         saludo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
         panel.add(saludo);
     }
