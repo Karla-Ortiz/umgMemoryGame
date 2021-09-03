@@ -5,6 +5,10 @@
  */
 package umgmemorygame.formularios;
 
+import java.awt.Font;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
 /**
  *
  * @author KORTIZ
@@ -15,7 +19,10 @@ public class FrmJuego extends javax.swing.JFrame {
      * Creates new form FrmJuego
      */
     public FrmJuego() {
-        initComponents();
+        this.setTitle("Pantalla de juego");
+        this.setSize(1010, 720);
+        this.setLocationRelativeTo(null);
+        pantallaJuego();
     }
 
     /**
@@ -33,11 +40,11 @@ public class FrmJuego extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 329, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 249, Short.MAX_VALUE)
         );
 
         pack();
@@ -77,7 +84,18 @@ public class FrmJuego extends javax.swing.JFrame {
             }
         });
     }
-
+    
+    public void pantallaJuego(){
+        JPanel panel = new JPanel();
+        panel.setLayout(null);
+        this.getContentPane().add(panel);
+        
+        JLabel saludo = new JLabel("Esto es una prueba");
+        saludo.setBounds(430, 100, 300, 40);
+        saludo.setFont(new Font("Times New Roman", Font.PLAIN, 35));
+        panel.add(saludo);
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }
