@@ -6,10 +6,13 @@
 package umgmemorygame.util;
 
 import java.awt.Color;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.border.BevelBorder;
 import javax.swing.border.Border;
+import umgmemorygame.formularios.FrmJuego;
 import umgmemorygame.imagenes.RutaImg;
 
 /**
@@ -18,14 +21,50 @@ import umgmemorygame.imagenes.RutaImg;
  */
 public class Carta {
     private JLabel vista;
-    private int name;
+    private int name, posicionx, posiciony;
     boolean volteada = false;
     
-    public Carta(int name){
+    public Carta(int name, int x, int y){
+        this.posicionx = x;
+        this.posiciony = y;
         vista = new JLabel();
         this.name = name;
-        vista.setIcon(RutaImg.resizable("src/umgmemorygame/imagenes/" + name + ".png", 50));
-        vista.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
+        vista.setIcon(RutaImg.getBlanco());
+        vista.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        vista.addMouseListener(new MouseListener(){
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(FrmJuego.cont == 2){
+                    if(name == FrmJuego.anterior){
+                        
+                    }
+                }
+            }
+            
+            @Override
+            public void mousePressed(MouseEvent e) {}
+            @Override
+            public void mouseReleased(MouseEvent e) {}
+            @Override
+            public void mouseEntered(MouseEvent e) {}
+            @Override
+            public void mouseExited(MouseEvent e) {}
+        });
+    }
+    
+    public void descubrir(){
+        if(!volteada){
+            volteada = true;
+            vista.setIcon(RutaImg.resizable("src/umgmemorygame/imagenes/" + name + ".png", 50));
+        } 
+    }
+    
+    public void ocultar(){
+        if(volteada){
+            volteada = false;
+            vista.setIcon(RutaImg.getBlanco());
+            vista.setBackground(Color.WHITE);
+        }
     }
 
     public JLabel getVista() {

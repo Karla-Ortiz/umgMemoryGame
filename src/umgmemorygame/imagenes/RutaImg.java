@@ -18,6 +18,7 @@ import javax.swing.ImageIcon;
  */
 public class RutaImg {
     private static final String logo = "src/umgmemorygame/imagenes/logo.jpg";
+    private static final String blanco = "src/umgmemorygame/imagenes/blanco.jpg";
     
     public static ImageIcon resizable(String imagen, int v) {
         BufferedImage icono = null;
@@ -38,4 +39,7 @@ public class RutaImg {
         return resizable(logo, 70);
     }
 
+    public static ImageIcon getBlanco() {
+        return resizable(blanco, 70);
+    }
 }

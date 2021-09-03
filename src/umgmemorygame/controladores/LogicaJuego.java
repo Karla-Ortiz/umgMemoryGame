@@ -27,7 +27,7 @@ public class LogicaJuego {
         JLabel[][] matriz = new JLabel[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                matrizCartas[i][j] = new Carta(matriz1[i][j]);
+                matrizCartas[i][j] = new Carta(matriz1[i][j],i,j);
                 matriz[i][j] = matrizCartas[i][j].getVista();
                 matriz[i][j].setBounds(380 + (j * 70), 10 + (i * 85), 70, 85);
             }

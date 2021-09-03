@@ -21,6 +21,7 @@ public class FrmJuego extends javax.swing.JFrame {
      */
     JPanel panel;
     JLabel matriz[][],fecha,cronometro,nombreJugador;
+    public static int cont = 1, anterior;
     
     public FrmJuego() {
         this.setTitle("Pantalla de juego");
