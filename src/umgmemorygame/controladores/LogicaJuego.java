@@ -29,8 +29,7 @@ public class LogicaJuego {
             for (int j = 0; j < 8; j++) {
                 matrizCartas[i][j] = new Carta(matriz1[i][j]);
                 matriz[i][j] = matrizCartas[i][j].getVista();
-                matriz[i][j].setSize(150, 300);
-                matriz[i][j].setBounds(320 + (j * 110), 10 + (i * 80), 150, 156);
+                matriz[i][j].setBounds(380 + (j * 70), 10 + (i * 85), 70, 85);
             }
         }
         return matriz;

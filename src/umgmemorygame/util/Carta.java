@@ -5,7 +5,11 @@
  */
 package umgmemorygame.util;
 
+import java.awt.Color;
+import javax.swing.BorderFactory;
 import javax.swing.JLabel;
+import javax.swing.border.BevelBorder;
+import javax.swing.border.Border;
 import umgmemorygame.imagenes.RutaImg;
 
 /**
@@ -15,11 +19,13 @@ import umgmemorygame.imagenes.RutaImg;
 public class Carta {
     private JLabel vista;
     private int name;
+    boolean volteada = false;
     
     public Carta(int name){
         vista = new JLabel();
         this.name = name;
         vista.setIcon(RutaImg.resizable("src/umgmemorygame/imagenes/" + name + ".png", 50));
+        vista.setBorder(BorderFactory.createBevelBorder(BevelBorder.RAISED));
     }
 
     public JLabel getVista() {

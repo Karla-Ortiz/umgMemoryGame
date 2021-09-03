@@ -24,7 +24,7 @@ public class FrmJuego extends javax.swing.JFrame {
     
     public FrmJuego() {
         this.setTitle("Pantalla de juego");
-        this.setSize(1250, 730);
+        this.setSize(1000, 740);
         this.setLocationRelativeTo(null);
         pantallaJuego();
     }
@@ -95,7 +95,7 @@ public class FrmJuego extends javax.swing.JFrame {
         this.getContentPane().add(panel);
         
         JLabel saludo = new JLabel("UMG Memory Game 1.0");
-        saludo.setBounds(500, 10, 300, 40);
+        saludo.setBounds(110, 10, 300, 40);
         saludo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panel.add(saludo);
         
