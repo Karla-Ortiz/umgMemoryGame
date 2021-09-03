@@ -7,6 +7,7 @@ package umgmemorygame.controladores;
 
 import java.util.Random;
 import javax.swing.JLabel;
+import umgmemorygame.util.Carta;
 
 /**
  *
@@ -14,20 +15,69 @@ import javax.swing.JLabel;
  */
 public class LogicaJuego {
 
-    int matriz1[][] = new int[8][8];
-    int matriz2[][] = new int[8][8];
-    Random ran;
-    int contador;
+    int matriz1[][] = new int[8][8]; //Matriz base
+    Carta matrizCartas[][] = new Carta[8][8]; //Matriz con componentes
 
+    /**
+     * Crea vista de las cartas con datos de la matriz base
+     * @param matriz de JLabel
+     * @return matriz de JLabel con componentes
+     */
     public JLabel[][] cartas(JLabel[][] matriz) {
+        insertarCartas();
         matriz = new JLabel[8][8];
         for (int i = 0; i < 8; i++) {
             for (int j = 0; j < 8; j++) {
-                matriz[i][j] = new JLabel();
+                matrizCartas[i][j] = new Carta(matriz1[i][j]);
+                matriz[i][j] = matrizCartas[i][j].getVista();
                 matriz[i][j].setSize(matriz[i][j].getWidth(), matriz[i][j].getHeight());
-                matriz[i][j].setBounds(350+(j*125),30+(i*156),125,156);
+                matriz[i][j].setBounds(350 + (j * 125), 30 + (i * 156), 125, 156);
             }
         }
         return matriz;
+    }
+
+    /**
+     * Llenar matriz base
+     */
+    public void insertarCartas() {
+        int x,y;
+        for (int k = 0; k < 8; k++) {
+            for (int l = 0; l < 8; l++) {
+                matriz1[k][l] = 0;
+            }
+        }
+        for (int i = 1; i <= 32; i++) {
+            x = generateIntRandom(8);
+            y = generateIntRandom(8);
+            if (matriz1[x][y] == 0) {
+                do {
+                    x = generateIntRandom(8);
+                    y = generateIntRandom(8);
+                } while (matriz1[x][y] == 0);
+            }
+            matriz1[x][y] = i;
+        }
+        for (int i = 1; i <= 32; i++) {
+            x = generateIntRandom(8);
+            y = generateIntRandom(8);
+            if (matriz1[x][y] == 0) {
+                do {
+                    x = generateIntRandom(8);
+                    y = generateIntRandom(8);
+                } while (matriz1[x][y] == 0);
+            }
+            matriz1[x][y] = i;
+        }
+    }
+
+    /**
+     *
+     * @param max limite superior
+     * @return entero random
+     */
+    private int generateIntRandom(int max) {
+        Random r = new Random();
+        return r.nextInt(max);
     }
 }
