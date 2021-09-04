@@ -15,24 +15,11 @@ import umgmemorygame.util.Carta;
  */
 public class LogicaJuego {
 
-    int matriz1[][] = new int[8][8]; //Matriz base
-    Carta matrizCartas[][] = new Carta[8][8]; //Matriz con componentes
+    public int matriz1[][] = new int[8][8]; //Matriz base
+    public static Carta matrizCartas[][] = new Carta[8][8]; //Matriz con componentes
 
-    /**
-     * Crea vista de las cartas con datos de la matriz base
-     * @return matriz de JLabel con componentes
-     */
-    public JLabel[][] cartas() {
+    public LogicaJuego(){
         insertarCartas();
-        JLabel[][] matriz = new JLabel[8][8];
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                matrizCartas[i][j] = new Carta(matriz1[i][j],i,j);
-                matriz[i][j] = matrizCartas[i][j].getVista();
-                matriz[i][j].setBounds(380 + (j * 70), 10 + (i * 85), 70, 85);
-            }
-        }
-        return matriz;
     }
 
     /**

@@ -9,6 +9,7 @@ import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import umgmemorygame.controladores.LogicaJuego;
+import umgmemorygame.util.Carta;
 
 /**
  *
@@ -20,9 +21,9 @@ public class FrmJuego extends javax.swing.JFrame {
      * Creates new form FrmJuego
      */
     JPanel panel;
-    JLabel matriz[][],fecha,cronometro,nombreJugador;
-    public static int cont = 1, anterior;
-    
+    JLabel matriz[][], fecha, cronometro, nombreJugador;
+    public static int cont = 1, anterior = 0,xant,yant;
+
     public FrmJuego() {
         this.setTitle("Pantalla de juego");
         this.setSize(1000, 740);
@@ -89,25 +90,27 @@ public class FrmJuego extends javax.swing.JFrame {
             }
         });
     }
-    
-    public void pantallaJuego(){
+
+    public void pantallaJuego() {
         panel = new JPanel();
         panel.setLayout(null);
         this.getContentPane().add(panel);
-        
+
         JLabel saludo = new JLabel("UMG Memory Game 1.0");
         saludo.setBounds(110, 10, 300, 40);
         saludo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
         panel.add(saludo);
-        
-        matriz = new LogicaJuego().cartas();
-        for(int i=0; i<8;i++){
-            for(int j=0;j<8;j++){
-                panel.add(matriz[i][j]);
+
+        LogicaJuego l = new LogicaJuego();
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                LogicaJuego.matrizCartas[i][j] = new Carta(l.matriz1[i][j],i,j, new JLabel());
+                LogicaJuego.matrizCartas[i][j].getVista().setBounds(380 + (j * 70), 10 + (i * 85), 70, 85);
+                panel.add(LogicaJuego.matrizCartas[i][j].getVista());                
             }
         }
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     // End of variables declaration//GEN-END:variables
 }

@@ -2,3 +2,4 @@
 *.xml
 /nbcproject/
 /test/
+/build/
