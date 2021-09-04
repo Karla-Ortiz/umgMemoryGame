@@ -83,7 +83,7 @@ public class FrmBienvenida extends javax.swing.JFrame {
 
     private void abrirMenu() throws Exception{
         mi_reproductor.stop();
-        tMusic.interrupt();
+        tMusic.destroy();
         FrmMenu menu = new FrmMenu();
         this.setVisible(false);
         menu.setVisible(true);
