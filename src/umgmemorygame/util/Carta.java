@@ -41,13 +41,13 @@ public class Carta extends JLabel{
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getButton() == MouseEvent.BUTTON1) {
-                    if (FrmJuego.cont < 3) {
+                    if (FrmJuego.cont < 3 && !encontrada) {
                         Runnable runnable = new Runnable() {
                             @Override
                             public void run() {
                                 try {
                                     descubrir(carta);
-                                    Thread.sleep(500);
+                                    Thread.sleep(1000);
                                     switch (FrmJuego.cont) {
                                         case 1:
                                             FrmJuego.cont++;
@@ -56,6 +56,7 @@ public class Carta extends JLabel{
                                             FrmJuego.yant = y;
                                             break;
                                         case 2:
+                                            FrmJuego.cont++;
                                             if (name == FrmJuego.anterior) {
                                                 LogicaJuego.matrizCartas[FrmJuego.xant][FrmJuego.yant].encontrada = true;
                                                 encontrada = true;
@@ -66,7 +67,7 @@ public class Carta extends JLabel{
                                             FrmJuego.cont = 1;
                                             break;
                                     }
-                                    Thread.sleep(1500);
+                                    Thread.sleep(500);
                                 } catch (Exception ex) {
                                     ex.printStackTrace();
                                 }

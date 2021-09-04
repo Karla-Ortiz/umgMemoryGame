@@ -5,18 +5,105 @@
  */
 package umgmemorygame.formularios;
 
+import java.awt.Font;
+import static java.util.concurrent.ThreadLocalRandom.current;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
+import umgmemorygame.controladores.LogicaJuego;
+import umgmemorygame.controladores.Reproductor;
+
 /**
  *
  * @author KORTIZ
  */
 public class FrmBienvenida extends javax.swing.JFrame {
 
+    JPanel p = new JPanel();
+    JProgressBar b;
+    JLabel cargando;
+    private static Reproductor mi_reproductor;
+    private static Thread tMusic;
+
     /**
      * Creates new form FrmBienvenida
      */
     public FrmBienvenida() {
-        initComponents();
+        this.setTitle("Bienvenida");
+        this.setSize(500, 400);
         this.setLocationRelativeTo(null);
+        p.setLayout(null);
+        this.getContentPane().add(p);
+
+        JLabel saludo = new JLabel("Bienvenido");
+        JLabel name = new JLabel("UMG Memory Game 1.0");
+        saludo.setBounds(200, 60, 200, 40);
+        saludo.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        name.setBounds(150, 110, 200, 40);
+        name.setFont(new Font("Times New Roman", Font.PLAIN, 20));
+        p.add(name);
+        p.add(saludo);
+
+        b = new JProgressBar(0, 100);
+        b.setBounds(100, 180, 300, 50);
+        cargando = new JLabel();
+        cargando.setBounds(210, 250, 200, 40);
+        cargando.setFont(new Font("Times New Roman", Font.PLAIN, 14));
+        p.add(cargando);
+        p.add(b);
+
+        Runnable runnable = new Runnable() {
+            @Override
+            public void run() {
+                int value = 0;
+                boolean stop = false;
+                while (!stop) {
+                    try {
+                        if (value < 100) {
+                            value += LogicaJuego.generateIntRandom(30);
+                            if(value > 100){
+                                value = 100;
+                            }
+                            b.setValue(value);
+                            cargando.setText("Cargando " + value + "%...");
+                            Thread.sleep(1000);
+                        } else {
+                            stop = true;
+                            abrirMenu();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread t = new Thread(runnable);
+        t.start();
+    }
+
+    private void abrirMenu() throws Exception{
+        mi_reproductor.stop();
+        tMusic.interrupt();
+        FrmMenu menu = new FrmMenu();
+        this.setVisible(false);
+        menu.setVisible(true);
+    }
+    
+    private static void reproducir() {
+        while (true) {
+            tMusic = new Thread(() -> {
+                try {
+                    mi_reproductor = new Reproductor();
+                    mi_reproductor.AbrirFichero("src/umgmemorygame/musica/Bienvenida.mp3");
+                    mi_reproductor.Play();
+                    Thread.sleep(150000);
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                    System.out.println("Error: " + ex.getMessage());
+                }
+            });
+            tMusic.run();
+        }
     }
 
     /**
@@ -106,11 +193,15 @@ public class FrmBienvenida extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmBienvenida().setVisible(true);
-            }
+        Thread t = new Thread(() -> {
+            java.awt.EventQueue.invokeLater(new Runnable() {
+                public void run() {
+                    new FrmBienvenida().setVisible(true);
+                }
+            });
         });
+        t.start();
+        reproducir();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

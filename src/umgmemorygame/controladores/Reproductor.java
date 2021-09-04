@@ -6,6 +6,8 @@
 package umgmemorygame.controladores;
 
 import java.io.File;
+import javazoom.jlgui.basicplayer.BasicPlayer;
+import static sun.audio.AudioPlayer.player;
 //import javazoom.jlgui.basicplayer.BasicPlayer;
 
 /**
@@ -14,18 +16,22 @@ import java.io.File;
  */
 public class Reproductor {
 
-//    private BasicPlayer player;
+    private BasicPlayer player;
 
     public Reproductor() {
-//        player = new BasicPlayer();
+        player = new BasicPlayer();
     }
 
     public void Play() throws Exception {
-//        player.play();
+        player.play();
     }
 
     public void AbrirFichero(String ruta) throws Exception {
-//        player.open(new File(ruta));
+        player.open(new File(ruta));
+    }
+    
+    public void stop() throws Exception{
+        player.stop();
     }
 
 }

@@ -61,7 +61,7 @@ public class LogicaJuego {
      * @param max limite superior
      * @return entero random
      */
-    private int generateIntRandom(int max) {
+    public static int generateIntRandom(int max) {
         Random r = new Random();
         return r.nextInt(max);
     }
